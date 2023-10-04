@@ -1,5 +1,6 @@
 <?php
-  require_once 'db.php';
+  include_once 'db.php';
+  'db.php';
 
 class PaintingModel {
     public function getAllPaintings() {
@@ -18,10 +19,10 @@ class PaintingModel {
 
     public function updatePainting($id, $title, $finished, $media, $artist, $style, $image) {
         global $pdo;
-        $sql = "UPDATE painting SET title=?, finished=?, media=?, artist=?, style=?, image=? WHERE id=?";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam('image', $image, PDO::PARAM_LOB);
-        $stmt->execute([$title, $finished, $media, $artist, $style, $image,$id]);       
+            $sql = "UPDATE painting SET title=?, finished=?, media=?, artist=?, style=?, image=? WHERE id=?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam('image', $image, PDO::PARAM_LOB);
+            $stmt->execute([$title, $finished, $media, $artist, $style, $image,$id]);  
     }
 
     public function deletePainting($id) {

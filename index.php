@@ -21,9 +21,9 @@
 
 	<div class="container p-5 my-5 bg-primary text-white">
 		<p><a href="#">Painting Project</a></p>
-		<p><a href="#">Ankit Shah, XX, XX</a></p>
-		<p><a href="#">30074802</a></p>
-		<p><a href="#">AT2.1</a></p>
+		<p><a href="#">Ankit Shah, Joseph Wiss</a></p>
+		<p><a href="#">30074802, 30054509</a></p>
+		<p><a href="#">AT2.2</a></p>
 	</div>
 </body>
 </html>

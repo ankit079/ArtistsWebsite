@@ -1,12 +1,30 @@
 <?php
 include_once 'db.php';
-$searchText = trim($_POST["search_text"]);
-$query = "SELECT * FROM painting WHERE title LIKE :keyword OR artist LIKE :keyword";
-$stmt = $pdo->prepare($query);
-$stmt->bindValue(':keyword', '%' . $searchText . '%', PDO::PARAM_STR);
-$stmt->execute();
 
-$items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// IF searchkey is in URL
+if (isset($_GET['searchkey'])) {
+    $searchText = trim($_GET['searchkey']);
+    
+    // paintings selected based on artist name
+    $query = "SELECT * FROM painting WHERE artist LIKE :artist_name";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindValue(':artist_name', '%' . $searchText . '%', PDO::PARAM_STR);
+    $stmt->execute();
+    
+    // paintings stored as items
+    $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} elseif (isset($_POST['search_text'])) {
+    $searchText = trim($_POST['search_text']);
+    
+    // sql search based on searchbar entry
+    $query = "SELECT * FROM painting WHERE title LIKE :keyword OR artist LIKE :keyword";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindValue(':keyword', '%' . $searchText . '%', PDO::PARAM_STR);
+    $stmt->execute();
+    
+    // search results stored as items
+    $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>
 </body>
 
@@ -23,10 +41,13 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <?php include 'nav_bar.php'; ?>
+    <?php 
+    include 'nav_bar.php';
+    include 'paintings_common.php';
+    ?>
     <div class="container">
         <div class="row">
-            <h1>Items List</h1>
+            <h1>Paintings</h1>
             <div class="col-12">
                 <?php foreach ($items as $item) : ?>
                     <div class="container">

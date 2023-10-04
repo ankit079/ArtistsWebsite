@@ -1,34 +1,54 @@
+/* Home, Paintings, Artists, Add Paintings, Add Artists */
 nav .nav li a {
-    color: white;
-    }
+	color: white;
+	display: inline-block;
+	padding: 10px;
+	margin-right: 10px;
+	text-align: left;
+}
+
+/* Filters */
+#nav-item {
+	color: white;
+	display: inline-block;
+	padding: 10px;
+	margin-left: 10px;
+	text-align: left;
+}
 
 p a {
-    color: white;
-    }
+	color: white;
+}
 
-p a:hover{
-    color: #0a58ca;
+p a:hover {
+	color: #0a58ca;
 }
 
 h5 {
-    padding-top: 10px;
-    padding-bottom: 10px;
+	padding: 10px;
 }
 
-.collapse{
-    padding-top: 15px;
-    padding-bottom: 15px;
+.collapse {
+	padding: 15px;
 }
 
-#contact{
-    color: #0a58ca;
+#contact {
+	color: #0a58ca;
 }
 
 button {
-    color: #0a58ca;
-    border: white;
+	color: #0a58ca;
 }
 
-#nav-filter-label{
-    color:  white;
+#nav-filter-label {
+	color: white;
+}
+
+body {
+	background-color: #87CEFA;
+}
+
+label.form-label {
+	font-weight: bold;
+	font-size: larger;
 }

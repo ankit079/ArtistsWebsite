@@ -25,7 +25,7 @@ if ($action === 'edit' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $artist = $_POST['artist'];
     $style = $_POST['style'];
     $image = file_get_contents($_FILES["image"]["tmp_name"], 'r');
-    $model->updatePainting($id,$title, $finished, $media, $artist, $style, $image);
+    $model->updatePainting($id, $title, $finished, $media, $artist, $style, $image);
     header('Location: view_paintings.php');
     exit();
 } 

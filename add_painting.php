@@ -12,22 +12,72 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <?php include_once 'nav_bar.php'; ?>
-    <h1>Add a New Painting</h1>
+
+    <div class="container-fluid">
+    <h3>Add a New Painting</h3>
     <form action="PaintingController.php?action=add" enctype="multipart/form-data" method="POST">
-        <label for="title">Title: </label>
-        <input type="text" name="title" id="title" placeholder="Enter Title"><br>
-        <label for="finished">Finished: </label>
-        <input type="text" name="finished" id="finished" placeholder="Enter Finished Date"><br>
-        <label for="media">Media: </label>
-        <input type="text" name="media" id="media" placeholder="Enter media"><br>
-        <label for="artist">Artist: </label>
-        <input type="text" name="artist" id="artist" placeholder="Enter artist"><br>
-        <label for="style">Style: </label>
-        <input type="text" name="style" id="style" placeholder="Enter style"><br>
-        <label for="image">Image: </label>
-        <input type="file" name="image" id="image"><br>
-        <input type="submit" value="Add Painting" name="submit">
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <label for="title" class="form-label">Title: </label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-2">
+            <label for="finished" class="form-label">Finished: </label>
+            </div>
+            <div class="col-auto">
+            <input type="text" class="form-control" name="finished" id="finished" placeholder="Enter Finished Date" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-2">
+            <label for="media" class="form-label">Media: </label>
+            </div>
+            <div class="col-auto">
+            <input type="text" name="media" class="form-control" id="media" placeholder="Enter media" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-2">
+            <label for="artist" class="form-label">Artist: </label>
+            </div>
+            <div class="col-auto">
+            <select class="form-select" name="artist" id="artist" required>
+			<option value="" disabled selected>Select an Artist</option>
+			<?php
+			include_once 'db.php';
+			$artists = $pdo->query("SELECT artist_name FROM artist")->fetchAll(PDO::FETCH_COLUMN);
+			foreach ($artists as $artist) {
+				echo "<option value=\"$artist\">$artist</option>";
+			}
+			?>
+			</select>
+            </div>
+        </div> 
+        <div class="row mb-3">
+            <div class="col-md-2">
+            <label for="style" class="form-label">Style: </label>
+            </div>
+            <div class="col-auto">
+            <input type="text" name="style" class="form-control" id="style" placeholder="Enter style" required>
+            </div>
+        </div> 
+        <div class="row mb-3">
+            <div class="col-md-2">
+            <label for="image" class="form-label">Image: </label>
+            </div>
+            <div class="col-auto">
+            <input type="file" name="image" class="form-control" id="image" required>
+            </div>
+        </div> 
+        <div>
+        <input type="submit" class="btn btn-primary" value="Add Painting" name="submit">
+        </div>
     </form>
+    </div>
 </body>
 
 </html>

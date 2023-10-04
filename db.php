@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Configure database connection
 $db_host = 'localhost';
 $db_name = 'acme';
