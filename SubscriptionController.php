@@ -24,7 +24,7 @@ if ($action === 'unsubscribe' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 } 
 
-if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {    
     $email = $_GET['email'];
     $model->deleteSubscription($email);
     header("location: view_subscription.php");
