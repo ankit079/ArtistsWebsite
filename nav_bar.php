@@ -19,13 +19,13 @@
 						<a class="dropdown-item" href="add_artist.php">Add Artist</a>
 					</div>
 				</li>
+				<li class="nav-item">
+					<a class=" nav-link btn btn-info" role="button" ria-pressed="true" aria-current="page" href="add_subscription.php" method="post">Subscribe</a>
+				</li>
+				<li class="nav-item">
+					<a class=" nav-link btn btn-info" role="button" aria-pressed="true" aria-current="page" href="login.php" method="post">Login</a>
+				</li>
 			</ul>
-			<form class="nav-item" action="add_subscription.php" method="post">
-			<button type="submit">Subscribe</button>
-		</form>
-		<form  class="nav-item" action="login.php" method="post">
-			<button type="submit">Login</button>
-		</form>
 		</div>
 	</div>
 </nav>

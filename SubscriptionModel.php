@@ -11,11 +11,29 @@ class SubscriptionModel
     }
 
     public function addSubscription($name, $email, $newsletter, $breakingnews, $unsubscribe)
-    {
+    {        
         global $pdo;
-        $sql = "INSERT INTO subscriber(name, email, monthly_newsletter, breaking_news, unsubscribe) VALUES (?,?,?,?,?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$name, $email, $newsletter, $breakingnews, $unsubscribe]);
+        $emailExists = false;
+        $stmt = $pdo->query('SELECT * FROM subscriber');
+        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach($items as $item)
+        {
+            if($item['email'] == $email)
+            {
+                $emailExists = true;     
+            }
+        }
+        if($emailExists == false)
+        {
+            $sql = "INSERT INTO subscriber(name, email, monthly_newsletter, breaking_news, unsubscribe) VALUES (?,?,?,?,?)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$name, $email, $newsletter, $breakingnews, $unsubscribe]);
+        }
+        else {
+            $sql = "UPDATE subscriber SET name=?, monthly_newsletter=?,breaking_news=? WHERE email=?";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$name, $newsletter, $breakingnews, $email]);
+        }
     }
 
     public function updateSubscription($unsubscribe, $email)
