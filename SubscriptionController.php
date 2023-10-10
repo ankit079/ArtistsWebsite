@@ -12,16 +12,18 @@ if ($action === 'subscribe' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $breakingnews = isset($_POST['breakingnews']) ? 1 : 0;
     $unsubscribe = 0;
     $model->addSubscription($name, $email, $newsletter, $breakingnews, $unsubscribe);
-    header('Location: index.php');
-    exit();
+    //header('Location: index.php');
+    //exit();
+    header('Location: feedback.php?action='.$action);
 } 
 
 if ($action === 'unsubscribe' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $unsubscribe = isset($_POST['unsubscribe']) ? 1 : 0;
     $model->updateSubscription($unsubscribe,$email);
-    header('Location: index.php');
-    exit();
+    //header('Location: index.php');
+    //exit();
+    header('Location: feedback.php?action='.$action);
 } 
 
 if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {    
@@ -34,6 +36,11 @@ if ($action === 'delete' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 if($action === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $model->authenticateUser($email, $password);    
+    $result = $model->authenticateUser($email, $password);   
+    
+    if($result == false)
+    {
+        header('Location: feedback.php?action='.$action);
+    }
 }
 ?>

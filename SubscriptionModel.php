@@ -92,6 +92,7 @@ class SubscriptionModel
                 header("location: view_subscription.php"); // Redirect to a view subscriptions page or dashboard
             } else {
                 // Login failed
+                $_SESSION["is_admin"] = false;
                 $error = "Invalid email or password.";
                 header("location: login.php"); // Redirect to login page
             }
