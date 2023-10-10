@@ -88,7 +88,6 @@ class SubscriptionModel
                 if ($user["role"] === "admin") {
                     $_SESSION["is_admin"] = true; // Set admin flag in the session
                 }
-
                 header("location: view_subscription.php"); // Redirect to a view subscriptions page or dashboard
             } else {
                 // Login failed
@@ -99,5 +98,6 @@ class SubscriptionModel
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-    }
+        return $_SESSION["is_admin"];
+        }
 }
